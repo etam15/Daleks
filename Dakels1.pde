@@ -19,6 +19,8 @@ Point s7 = {2,5};
 Point s8 = {4,1};
 Point robots[8] = {s1, s2, s3, s4, s5, s6, s7, s8};
 Point player = {3,1};
+int xcoord = 0;
+int ycoord = 0;
 
 void setup() //what shows up when you open it, which is level 1
 {
