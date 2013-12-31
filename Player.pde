@@ -33,13 +33,6 @@ void movePlayer()
     moveRobots();
   }  
   
-  if (Button_A)
-  {
-    Tone_Start(18182, 100);
-    player.x = 7;
-    player.y = 7;
-  }
-  
   
   
   if (player.x > 7)

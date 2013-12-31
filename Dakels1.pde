@@ -28,8 +28,7 @@ void setup() //what shows up when you open it, which is level 1
 
 void gameOver()
 {
-  Tone_Start(18182, 100);
-   int color=0;     
+  Tone_Start(ToneD3, 500);    
     for (int x=0; x<8; x++)
     {
       for (int y=0; y<8; y++)
@@ -40,19 +39,19 @@ void gameOver()
         delay(80);
         ClearSlate();
     }
-  player.x = 3;
-  player.y = 1;
-  robots[0].x = 3;
-  robots[0].y = 4;
-  robots[1].x = 4;
-  robots[1].y = 6;
+     player.x = 3;
+     player.y = 1;
+     robots[0].x = 3;
+     robots[0].y = 4;
+     robots[1].x = 4;
+     robots[1].y = 6;
 }  
-
 void loop()
 {
   DrawPx (player.x, player.y, White);
   DrawPx (robots[0].x, robots[0].y, Red);
   DrawPx (robots [1].x, robots[1].y, Red);
+  DrawPx (0,0, Blue);
   DisplaySlate();
   delay(100);
   ClearSlate();
@@ -66,7 +65,7 @@ void loop()
     // {
      //  Tone_Start(ToneC5, 100);
   //   }
-
+ 
     
     if (playerHit())
     {
