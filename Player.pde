@@ -14,14 +14,14 @@ void movePlayer()
   }
   if (Button_Down)
   { 
-    Tone_Start(ToneG5, 100);  
+    Tone_Start(ToneG5, 100); 
     player.y--;
     moveRobots();
   }      
   
   if (Button_Left)
   { 
-    Tone_Start(ToneG5, 100);  
+    Tone_Start(ToneG5, 100); 
     player.x--;
     moveRobots();
   }      
@@ -32,7 +32,15 @@ void movePlayer()
     player.x++;
     moveRobots();
   }  
-
+  
+  if (Button_A)
+  {
+    Tone_Start(18182, 100);
+    player.x = 7;
+    player.y = 7;
+  }
+  
+  
   
   if (player.x > 7)
   {
@@ -54,3 +62,14 @@ void movePlayer()
     player.y = 7;
   }
 }
+
+boolean playerHit()
+{
+  for (int i = 0; i < numberOfRobots; i++)
+  {
+    if ( (player.x == robots[i].x) && (player.y == robots[i].y) )
+     return true;
+  }
+ return false;
+} 
+

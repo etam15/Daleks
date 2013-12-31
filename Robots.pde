@@ -41,7 +41,7 @@ void moveRobots()
     }
     else if (robots[i].x < player.x)
     {
-    robots[i].x++;
+      robots[i].x++;
     }
   
    if (robots[i].x > 7)                                                                 
