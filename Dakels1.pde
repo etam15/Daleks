@@ -26,32 +26,10 @@ void setup() //what shows up when you open it, which is level 1
   Serial.begin(9600);
 }
 
-void gameOver()
-{
-  Tone_Start(ToneD3, 500);    
-    for (int x=0; x<8; x++)
-    {
-      for (int y=0; y<8; y++)
-      {
-        DrawPx (x,y, Red);
-      }
-        DisplaySlate();
-        delay(80);
-        ClearSlate();
-    }
-     player.x = 3;
-     player.y = 1;
-     robots[0].x = 3;
-     robots[0].y = 4;
-     robots[1].x = 4;
-     robots[1].y = 6;
-}  
+ 
 void loop()
 {
-  DrawPx (player.x, player.y, White);
-  DrawPx (robots[0].x, robots[0].y, Red);
-  DrawPx (robots [1].x, robots[1].y, Red);
-  DrawPx (0,0, Blue);
+  level1();
   DisplaySlate();
   delay(100);
   ClearSlate();
