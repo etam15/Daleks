@@ -35,25 +35,7 @@ void gameOver()
      robots[1].y = 6;
 } 
 
-void teleport()
-{
-  if (ReadPx (player.x, player.y == Blue))
-  {
-    for (int x=0; x<8; x++)
-    {
-      for (int y=0; y<8; y++)
-      {
-        DrawPx (x,y, Blue);
-      }
-        DisplaySlate();
-        delay(80);
-        ClearSlate();
-    }
-    player.x = 7;
-    player.y = 7;
-    DisplaySlate();
-  }
-}
+
 
 void ZapARobot()
 {

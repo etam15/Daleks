@@ -1,18 +1,3 @@
-boolean collisionRobots()
-{
-  for (int i = 0; i < numberOfRobots; i++)
-  {
-    if (robots[i].x == robots[i].x && robots[i].y == robots[i].y)
-      return true;
-  }
-  return false;
-}
-
-  //if (collisionRobots() == true) 
-    // {
-     //  Tone_Start(ToneC5, 100);
-  //   }
-  
 
 void drawRobots()
 {
@@ -21,6 +6,27 @@ void drawRobots()
     DrawPx (robots[i].x, robots[i].y, Red);
   }
 } 
+
+boolean RobotTeleport()
+{
+  for (int i = 0; i < numberOfRobots; i++) 
+  {
+    if ((robots[i].x == xcoord) && (robots[i].y == ycoord))
+    return true;
+  }
+  return false;
+}
+
+boolean RobotsCollision()
+{
+  for (int i = 0; i < numberOfRobots; i++) 
+  {
+    if ((robots[i].x == robots[i].x) && (robots[i].y == robots[i].y))
+    return true;
+  }
+  return false;
+}    
+    
 
 void moveRobots()
 {

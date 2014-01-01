@@ -66,3 +66,13 @@ boolean playerHit()
  return false;
 } 
 
+boolean playerTeleport()
+{
+    if ( (player.x == xcoord) && (player.y == ycoord) )
+    {
+      return true;
+    }
+      return false;
+}
+
+

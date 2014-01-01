@@ -41,12 +41,33 @@ void loop()
     Serial.print("Y = ");
     Serial.println(player.y);
     
-      //if (collisionRobots() == true) 
-    // {
-     //  Tone_Start(ToneC5, 100);
-  //   }
- 
+    if (RobotTeleport())
+    {
+      for (int i = 0; i < numberOfRobots; i++)
+      {
+       Tone_Start(18203, 100);
+       delay(80);
+       ClearSlate();
+       robots[i].x = 7;
+       robots[i].y = 7;
+       DisplaySlate();
+      }
+    }
     
+    //if (RobotsCollision())
+    //{
+   // }
+    
+    if (playerTeleport())
+    { 
+       Tone_Start(17293 ,100);
+       delay(80);
+       ClearSlate();
+       player.x = 7;
+       player.y = 7;
+       DisplaySlate();
+    }
+     
     if (playerHit())
     {
       gameOver();
