@@ -41,6 +41,8 @@ void loop()
     Serial.print("Y = ");
     Serial.println(player.y);
     
+    
+   
     if (RobotTeleport())
     {
       for (int i = 0; i < numberOfRobots; i++)
@@ -54,9 +56,46 @@ void loop()
       }
     }
     
-    //if (RobotsCollision())
-    //{
-   // }
+    if (RobotsCollision())
+    {
+      for (int i = 0; i < numberOfRobots; i++)
+      {
+        for (int j = 0; j < numberOfRobots; j++)
+        {
+          if (i != j)
+        {
+          Point newSlag = {robots[i].x, robots[i].y};
+          DrawPx (newSlag.x, newSlag.y, Orange);
+          DisplaySlate();
+          robots[i].x = -6; 
+          robots[i].y = -7; 
+          robots[j].x = -8;
+          robots[j].y = -9;         
+          
+     
+      if (robots[i].x < -5)
+      {
+        robots[i].x = -5;
+      }
+      
+      if (robots[i].y < -5)
+      {
+        robots[i].y = -5;
+      }
+      
+      if (robots[j].x < -5)
+      {
+        robots[j].x = -5;
+      }
+      
+      if (robots[j].y < -5)
+      {
+        robots[j].y = -5;
+      }
+    }  
+       }
+     }
+    }
     
     if (playerTeleport())
     { 
@@ -72,6 +111,7 @@ void loop()
     {
       gameOver();
     }
+
 }
     
 
