@@ -1,4 +1,5 @@
 #include <MeggyJrSimple.h>
+//Eric Tam
 //if numberOfRobots < 8, numberOfRobots++
  //variables
 int numberOfRobots = 2;
@@ -25,23 +26,17 @@ int ycoord = 0;
 void setup() //what shows up when you open it, which is level 1
 {
   MeggyJrSimpleSetup ( );
-  Serial.begin(9600);
 }
 
  
 void loop()
 {
+  OpeningScreen();  
   level1();
   DisplaySlate();
   delay(100);
   ClearSlate();
-    movePlayer();
-    Serial.print("X = ");
-    Serial.println(player.x);
-    Serial.print("Y = ");
-    Serial.println(player.y);
-    
-    
+  movePlayer();
    
     if (RobotTeleport())
     {

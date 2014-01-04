@@ -4,6 +4,7 @@ void level1()
   DrawPx (player.x, player.y, White);
   DrawPx (robots[0].x, robots[0].y, Red);
   DrawPx (robots [1].x, robots[1].y, Red);
+  DisplaySlate();
 }
 
 void level2()
