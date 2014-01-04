@@ -3,6 +3,7 @@
 //if numberOfRobots < 8, numberOfRobots++
  //variables
 int numberOfRobots = 2;
+int endSlag = 4;
 
 struct Point
 {
@@ -26,17 +27,23 @@ int ycoord = 0;
 void setup() //what shows up when you open it, which is level 1
 {
   MeggyJrSimpleSetup ( );
+  Serial.begin(9600);
 }
 
  
 void loop()
 {
-  OpeningScreen();  
   level1();
   DisplaySlate();
   delay(100);
   ClearSlate();
-  movePlayer();
+    movePlayer();
+    Serial.print("X = ");
+    Serial.println(player.x);
+    Serial.print("Y = ");
+    Serial.println(player.y);
+    
+    
    
     if (RobotTeleport())
     {
@@ -60,13 +67,21 @@ void loop()
           if (i != j)
         {
           Point newSlag = {robots[i].x, robots[i].y};
-          DrawPx (newSlag.x, newSlag.y, Orange);
-          DisplaySlate();
+          slag[endSlag] = newSlag; //adds new slag to pile
+          endSlag++; // moves marker
           robots[i].x = -6; 
           robots[i].y = -7; 
           robots[j].x = -8;
           robots[j].y = -9;         
-          
+          DisplaySlate();
+        }
+         void DrawSlag()
+         {
+           for (int i = 0; i < endSlag; i++)
+           {
+             DrawPx(slag[i].x,slag[i].y,Orange);
+           }
+         }
      
       if (robots[i].x < -5)
       {
@@ -87,10 +102,10 @@ void loop()
       {
         robots[j].y = -5;
       }
-    }  
-       }
-     }
+      }  
     }
+  }
+
     
     if (playerTeleport())
     { 

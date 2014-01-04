@@ -30,7 +30,11 @@ boolean RobotsCollision()
   }
 }
 
-    
+void DrawSlag(){
+  for (int i = 0; i < endSlag; i++){
+    DrawPx(slag[i].x,slag[i].y,Orange);
+  }
+}
 
 
 void moveRobots()
