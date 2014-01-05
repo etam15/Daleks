@@ -2,8 +2,9 @@
 //Eric Tam
 //if numberOfRobots < 8, numberOfRobots++
  //variables
+int numberOfSlags = 4;
 int numberOfRobots = 2;
-int endSlag = 4;
+int endSlag = 0;
 
 struct Point
 {
@@ -11,15 +12,16 @@ struct Point
   int y;
 };
 
-Point s1 = {3,4};
-Point s2 = {4,6};
-Point s3 = {0,4};
-Point s4 = {5,2};
-Point s5 = {1,2};
-Point s6 = {0,7};
-Point s7 = {2,5};
-Point s8 = {4,1};
-Point robots[8] = {s1, s2, s3, s4, s5, s6, s7, s8};
+Point r1 = {3,4};
+Point r2 = {4,6};
+Point r3 = {5,2};
+Point r4 = {0,3};
+Point r5 = {2,4};
+Point r6 = {1,6};
+Point r7 = {6,3};
+Point r8 = {7,2};
+Point robots[8] = {r1, r2, r3, r4, r5, r6, r7, r8};
+
 Point player = {3,1};
 int xcoord = 0;
 int ycoord = 0;
@@ -27,6 +29,8 @@ int ycoord = 0;
 void setup() //what shows up when you open it, which is level 1
 {
   MeggyJrSimpleSetup ( );
+  OpeningScreen();
+  Logo();
   Serial.begin(9600);
 }
 
@@ -49,14 +53,10 @@ void loop()
     {
       for (int i = 0; i < numberOfRobots; i++)
       {
-       Tone_Start(18203, 100);
-       delay(80);
-       ClearSlate();
-       robots[i].x = 7;
-       robots[i].y = 7;
-       DisplaySlate();
+       gameOver();
       }
     }
+
     
     if (RobotsCollision())
     {
@@ -66,45 +66,38 @@ void loop()
         {
           if (i != j)
         {
-          Point newSlag = {robots[i].x, robots[i].y};
-          slag[endSlag] = newSlag; //adds new slag to pile
-          endSlag++; // moves marker
+          {
+          DrawPx (robots[i].x, robots[i].y, 10);
+          DisplaySlate();
           robots[i].x = -6; 
           robots[i].y = -7; 
           robots[j].x = -8;
-          robots[j].y = -9;         
-          DisplaySlate();
+          robots[j].y = -9; 
+          }  
         }
-         void DrawSlag()
-         {
-           for (int i = 0; i < endSlag; i++)
-           {
-             DrawPx(slag[i].x,slag[i].y,Orange);
-           }
-         }
-     
-      if (robots[i].x < -5)
-      {
-        robots[i].x = -5;
-      }
+              
+          if (robots[i].x < -5)
+          {
+            robots[i].x = -5;
+          }
       
-      if (robots[i].y < -5)
-      {
-        robots[i].y = -5;
-      }
+          if (robots[i].y < -5)
+          {
+            robots[i].y = -5;
+          }
       
-      if (robots[j].x < -5)
-      {
-        robots[j].x = -5;
-      }
+          if (robots[j].x < -5)
+          {
+            robots[j].x = -5;
+          }
       
-      if (robots[j].y < -5)
-      {
-        robots[j].y = -5;
+          if (robots[j].y < -5)
+          {
+            robots[j].y = -5;
+          }
+        }
       }
-      }  
     }
-  }
 
     
     if (playerTeleport())

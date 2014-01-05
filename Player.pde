@@ -1,8 +1,3 @@
-void drawPlayer()
-{
-  DrawPx (player.x, player.y, White);
-}
-
 void movePlayer()
 {
   CheckButtonsPress(); //checks buttons

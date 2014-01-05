@@ -1,4 +1,4 @@
-void BeatGameSound()
+void GameSound()
 {
   Tone_Start( ToneG5, 400 );
   delay(600);
@@ -21,7 +21,7 @@ void gameOver()
     {
       for (int y=0; y<8; y++)
       {
-        DrawPx (x,y, Red);
+        DrawPx (x,y, Blue);
       }
         DisplaySlate();
         delay(80);
@@ -33,6 +33,18 @@ void gameOver()
      robots[0].y = 4;
      robots[1].x = 4;
      robots[1].y = 6;
+     robots[2].x = 5;
+     robots[2].y = 2;
+      robots[3].x = 0;
+     robots[3].y = 3;
+      robots[4].x = 2;
+     robots[4].y = 4;
+      robots[5].x = 1;
+     robots[5].y = 6;
+      robots[6].x = 6;
+     robots[6].y = 3;
+      robots[7].x = 7;
+     robots[7].y = 2;
 } 
 
     

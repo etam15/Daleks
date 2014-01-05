@@ -1,11 +1,4 @@
 
-void drawRobots()
-{
-  for (int i = 0; i < numberOfRobots; i++)
-  {
-    DrawPx (robots[i].x, robots[i].y, Red);
-  }
-} 
 
 boolean RobotTeleport()
 {
@@ -27,12 +20,6 @@ boolean RobotsCollision()
        return true;
     }
       return false;
-  }
-}
-
-void DrawSlag(){
-  for (int i = 0; i < endSlag; i++){
-    DrawPx(slag[i].x,slag[i].y,Orange);
   }
 }
 
@@ -58,6 +45,30 @@ void moveRobots()
      {
        robots[i].x++;
      }
+     
+     if (robots[i].x > 7)
+     {
+       robots[i].x = 7;
+     }
+     
+       
+     if (robots[i].y > 7)
+     {
+       robots[i].x = 7;
+     }
+     
+       
+     if (robots[i].x < 0)
+     {
+       robots[i].x = 0;
+     }
+     
+       
+     if (robots[i].x < 0)
+     {
+       robots[i].x = 0;
+     }
+     
  }
    
 }

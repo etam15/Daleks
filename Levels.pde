@@ -1,10 +1,24 @@
 void level1()
 {
-  DrawPx (xcoord, ycoord, Blue);
-  DrawPx (player.x, player.y, White);
-  DrawPx (robots[0].x, robots[0].y, Red);
-  DrawPx (robots [1].x, robots[1].y, Red);
-  DisplaySlate();
+   for (int i = 0; i < numberOfRobots; i++)
+   {
+    DrawPx (xcoord, ycoord, Violet);
+    DrawPx (player.x, player.y, White);
+    DisplaySlate();
+   }
+   
+   for (int i = 0; i < numberOfRobots; i++)
+   {
+     if ((robots[i].x > -1) && (robots[i].x > -1))
+     {
+       DrawPx (robots[i].x, robots[i].y, Blue);
+       DisplaySlate();
+     }
+     
+     else if ((robots[i].x > -1) && (robots[i].x > -1))
+     {
+     }
+   }
 }
 
 void level2()
