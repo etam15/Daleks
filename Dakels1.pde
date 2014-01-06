@@ -1,8 +1,7 @@
 #include <MeggyJrSimple.h>
 //Eric Tam
 //if numberOfRobots < 8, numberOfRobots++
- //variables
-int numberOfSlags = 0;
+int numberOfSlags = 0;  //Variables
 int numberOfRobots = 2;
 int start = random(32)+16;
 
@@ -20,7 +19,7 @@ int xcoord = 0;
 int ycoord = 0;
 boolean levelup = false;
 
-void setup() //what shows up when you open it, which is level 1
+void setup() //An Opening Graphic
 {
   MeggyJrSimpleSetup ( );
   OpeningScreen();
@@ -43,6 +42,7 @@ void loop()
   RobotsCollision();
     if (levelup == true)
     {
+      GameSound();
       fillArray();
       numberOfRobots++;
     }
@@ -68,6 +68,7 @@ void loop()
     }
 
 }
+
 void fillArray()
 {
   Point previous = {0,0};

@@ -16,8 +16,6 @@ void drawRobots()
 }
 
 
-
-
 boolean RobotTeleport()
 {
   for (int i = 0; i < numberOfRobots; i++) 
