@@ -2,9 +2,9 @@
 //Eric Tam
 //if numberOfRobots < 8, numberOfRobots++
  //variables
-int numberOfSlags = 4;
+int numberOfSlags = 0;
 int numberOfRobots = 2;
-int endSlag = 0;
+int start = random(32)+16;
 
 struct Point
 {
@@ -12,93 +12,46 @@ struct Point
   int y;
 };
 
-Point r1 = {3,4};
-Point r2 = {4,6};
-Point r3 = {5,2};
-Point r4 = {0,3};
-Point r5 = {2,4};
-Point r6 = {1,6};
-Point r7 = {6,3};
-Point r8 = {7,2};
-Point robots[8] = {r1, r2, r3, r4, r5, r6, r7, r8};
+Point robots[64] = {};
+Point slag[4] = {};
 
 Point player = {3,1};
 int xcoord = 0;
 int ycoord = 0;
+boolean levelup = false;
 
 void setup() //what shows up when you open it, which is level 1
 {
   MeggyJrSimpleSetup ( );
   OpeningScreen();
-  Logo();
+  Logo();  
   Serial.begin(9600);
+  fillArray();
 }
 
  
 void loop()
 {
-  level1();
+  drawRobots();
+  drawSlag();
   DisplaySlate();
   delay(100);
   ClearSlate();
-    movePlayer();
-    Serial.print("X = ");
-    Serial.println(player.x);
-    Serial.print("Y = ");
-    Serial.println(player.y);
-    
+  movePlayer();
+  DrawPx (player.x, player.y, White);
+  DrawPx (xcoord, ycoord, Violet);
+  RobotsCollision();
+    if (levelup == true)
+    {
+      fillArray();
+      numberOfRobots++;
+    }
     
    
     if (RobotTeleport())
     {
-      for (int i = 0; i < numberOfRobots; i++)
-      {
-       gameOver();
-      }
+      gameOver();
     }
-
-    
-    if (RobotsCollision())
-    {
-      for (int i = 0; i < numberOfRobots; i++)
-      {
-        for (int j = 0; j < numberOfRobots; j++)
-        {
-          if (i != j)
-        {
-          {
-          DrawPx (robots[i].x, robots[i].y, 10);
-          DisplaySlate();
-          robots[i].x = -6; 
-          robots[i].y = -7; 
-          robots[j].x = -8;
-          robots[j].y = -9; 
-          }  
-        }
-              
-          if (robots[i].x < -5)
-          {
-            robots[i].x = -5;
-          }
-      
-          if (robots[i].y < -5)
-          {
-            robots[i].y = -5;
-          }
-      
-          if (robots[j].x < -5)
-          {
-            robots[j].x = -5;
-          }
-      
-          if (robots[j].y < -5)
-          {
-            robots[j].y = -5;
-          }
-        }
-      }
-    }
-
     
     if (playerTeleport())
     { 
@@ -107,7 +60,6 @@ void loop()
        ClearSlate();
        player.x = 7;
        player.y = 7;
-       DisplaySlate();
     }
      
     if (playerHit())
@@ -116,5 +68,26 @@ void loop()
     }
 
 }
-    
+void fillArray()
+{
+  Point previous = {0,0};
+  for (int i = 0; i < 64; i++)
+  {
+    Point current = {random(8),random(8)};
+    while (previous.x == current.x && previous.y == current.y)
+    {
+      current.x = random(8);
+      current.y = random(8);
+    }
+    robots[i] = current;
+  }
+}
+
+void drawSlag()
+{
+  for (int i = 0; i < numberOfSlags; i++)
+  {
+    DrawPx(slag[i].x, slag[i].y, Yellow);
+  }
+}
 

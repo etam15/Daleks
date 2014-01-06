@@ -28,7 +28,10 @@ void movePlayer()
     moveRobots();
   }  
   
-  
+  if (Button_A)
+  {
+    gameOver();
+  }
   
   if (player.x > 7)
   {

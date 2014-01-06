@@ -1,3 +1,21 @@
+void drawRobots()
+{ 
+  int numdead = 0;
+  for (int i = start; i<start+numberOfRobots; i++)
+  {
+    if ((robots[i].x > -1) && (robots[i].x > -1))
+    {      
+      DrawPx(robots[i].x, robots[i].y, Blue);
+    }
+    else numdead++;
+  }
+  if (numdead == numberOfRobots)
+  {
+    levelup = true;
+  }
+}
+
+
 
 
 boolean RobotTeleport()
@@ -10,16 +28,21 @@ boolean RobotTeleport()
   return false;
 }
 
-boolean RobotsCollision()
+void RobotsCollision()
 {
   for (int i = 0; i < numberOfRobots; i++)
   {
     for (int j = 0; j < numberOfRobots; j++)
     {
       if (i != j && robots[i].x == robots[j].x && robots[i].y == robots[j].y)
-       return true;
+      {
+        Point s = {robots[i].x, robots[i].y};
+        slag[numberOfSlags] = s;
+        numberOfSlags++;
+        robots[i].x = -1;
+        robots[i].y = -1;
+      }
     }
-      return false;
   }
 }
 
