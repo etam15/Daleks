@@ -1,4 +1,4 @@
-void OpeningScreen()
+void OpeningScreen() //Opening screen graphic
 {
 int color=0;     
     for (int x=0; x<8; x++)
@@ -15,7 +15,7 @@ int color=0;
       
 }
 
-void Logo()
+void Logo() //The game logo, which is a big D
 {
   DrawPx(2,0, White);
   DrawPx(2,1, White);

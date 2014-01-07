@@ -1,73 +1,67 @@
-void drawRobots()
+void drawRobots() //Drawing the robots
 { 
-  int numdead = 0;
+  int numdead = 0; // Record the number dead
   for (int i = start; i<start+numberOfRobots; i++)
   {
-    if ((robots[i].x > -1) && (robots[i].x > -1))
+    if ((robots[i].x > -1) && (robots[i].y > -1)) //Draw only the alive ones
     {      
-      DrawPx(robots[i].x, robots[i].y, Blue);
+      DrawPx(robots[i].x, robots[i].y, Blue); 
     }
-    else numdead++;
+    else numdead++; //add one to the amount dead
   }
-  if (numdead == numberOfRobots)
+  if (numdead == numberOfRobots) //To determine you completed the level
   {
-    levelup = true;
+    levelup = true; 
   }
 }
 
 
-boolean RobotTeleport()
+void RobotsCollision() //Checks if robots collide into each other
 {
-  for (int i = 0; i < numberOfRobots; i++) 
+  for (int i = start; i < start+numberOfRobots; i++)
   {
-    if ((robots[i].x == xcoord) && (robots[i].y == ycoord))
-    return true;
-  }
-  return false;
-}
-
-void RobotsCollision()
-{
-  for (int i = 0; i < numberOfRobots; i++)
-  {
-    for (int j = 0; j < numberOfRobots; j++)
+    for (int j = start; j < start+numberOfRobots; j++) //to distinguish one robot from another
     {
-      if (i != j && robots[i].x == robots[j].x && robots[i].y == robots[j].y)
+    
+      if (i != j && robots[i].x != -1) 
       {
-        Point s = {robots[i].x, robots[i].y};
-        slag[numberOfSlags] = s;
-        numberOfSlags++;
-        robots[i].x = -1;
-        robots[i].y = -1;
+        if(robots[i].x == robots[j].x && robots[i].y == robots[j].y)
+        {
+          Point s = {robots[i].x, robots[i].y}; //Point the slag to where it's going to be drawn
+          slag[numberOfSlags] = s;
+          numberOfSlags++;       
+          robots[i].x = -1; //Kaboom. Kill the robots.
+          robots[j].x = -1;
+        }
       }
     }
   }
 }
 
 
-void moveRobots()
+void moveRobots() //Moving the robots
 {
-  for (int i = 0; i < numberOfRobots; i++)
+  for (int i = start; i < start+numberOfRobots; i++)
   {
-     if (robots[i].y < player.y) 
+     if (robots[i].y < player.y && robots[i].y >= 0) 
      {
        robots[i].y++; 
      }
-     else if (robots[i].y > player.y)
+     else if (robots[i].y > player.y && robots[i].y > 0)
      {
       robots[i].y--;
      }
   
-     if (robots[i].x > player.x)
+     if (robots[i].x > player.x && robots[i].x > 0)
      {
        robots[i].x--;
      }
-     else if (robots[i].x < player.x)
+     else if (robots[i].x < player.x && robots[i].x != -1)
      {
        robots[i].x++;
      }
      
-     if (robots[i].x > 7)
+     if (robots[i].x > 7) //Set boundaries for those robots
      {
        robots[i].x = 7;
      }
@@ -77,19 +71,6 @@ void moveRobots()
      {
        robots[i].x = 7;
      }
-     
-       
-     if (robots[i].x < 0)
-     {
-       robots[i].x = 0;
-     }
-     
-       
-     if (robots[i].x < 0)
-     {
-       robots[i].x = 0;
-     }
-     
  }
    
 }
